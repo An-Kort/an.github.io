@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"> //adaptiv tel
+<title>Поздравляем!</title>
+ <link rel="shortcut icon" href="../_images/i.ico" type="image/x-icon">
+<link href="../_css/jquery-ui.min.css" rel="stylesheet">
+<link href="../_css/stylee.css" rel="stylesheet">
+<script src="../_js/jquery.min.js"></script>
+<script src="../_js/jquery-ui.min.js"></script>
+  <style type="text/css">
+.card IMG { position: absolute; }
+.three { top: 50%; left: 40%; z-index: 5; }
+.seven { left:  40%; top: 53%; z-index: 2; }
+#pod{position: absolute;}
+  </style>
+  <script>
+$(document).ready(function() {
+  $('#hello').dialog({
+    modal: true 
+  });
+  
+}); // end ready
+
+$(document).ready(function() {
+  $('#photos').draggable({  //все элементы - перетаскиваемые
+    revert : "invalid",  //вернуть элемент, если не виджет droppable
+    start : function (event, ui) {  //событие, срабатывающее при перетаскивании элемента
+      ui.helper.css('transform', 'rotate(-70deg) scale(1.2)');  //объект, поворот, масштаб
+    },
+    stop : function (event, ui) { // отмена изменений
+      ui.helper.css('transform', 'rotate(0deg) scale(1)'); 
+    },
+     //расположение элемента в стопке
+  });
+  $('#trashcan').droppable({  //виджет droppable
+    activeClass : 'highlight',  //добавление класса, прозрачность в css
+    drop : function (event, ui) { //фугкция после перемещения элементов
+      ui.helper.hide(); //перетаскиваемый объект, исчезновение
+      $(this).attr('src','../_images/vazfl.png' ); //ссылка на элемент img с идентификатором trashcan
+    }
+  });
+}); // end ready
+</script>
+<script>
+$(document).ready(function() {
+  $('#contact').tooltip({
+    content: $('#contactInfo').html()    //объект, извлечение html кода
+   
+  }); // end tooltip
+ 
+}); // end ready
+
+$( "#pod" ).position({
+  my: "center top",
+  at: "center",
+  of: "#contact"
+});
+
+
+</script>
+<script type="text/javascript">
+  !function($){
+    var $lep = $('.lep'),
+    lepCount = $lep.data('count')
+    for (i=0;i<lepCount;i++){
+      var $lep = $('<div class="lep"></div>').appendTo($lep);
+      var left = Math.round(Math.random()*80);
+      $lep.css('left', left+'%')
+    }
+
+  }(jQuery)
+</script>
+ </head>
+ <body>
+  <div class="wrapper">
+  <header>
+  <img src="../_images/te.png" height="80%"  />
+  </header>
+
+  <div class="content">
+<img src="../_images/vaz.png" id="trashcan" width="18%">
+
+  <div class="card">
+    
+   <img src="../_images/fl.png" alt="3" class="three" id="photos" width="35%" />
+
+   <img src="../_images/ot.png" id="contact" title="cat" alt="7" class="seven" width="35%" />
+  </div>
+  
+  <div id="hello" title="Привет, Мир!">
+        <p>Уберите цветы в вазу!</p>
+      </div>
+
+
+</div>
+  <footer>
+     <img src="../_images/omgtu.png" alt="3"  id="phh" width ="10%"/>
+    <img src="../_images/logo.jpg" alt="3"  id="ph" width ="15%"/>
+   
+  </footer>
+  </div>
+<script id="contactInfo" type="text/template">
+  <p>Вот он!</p>
+  <p><img src="../_images/omgtu.png" title="Я кот!"  width="50%" id='pod' ></p>
+</script> 
+ </body>
+</html>
